@@ -47,30 +47,33 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCxonhqtYbqQLORbx_-c-n2bWN0e-4Km3g',
-    appId: '1:906403289387:web:7a1f8902ee9c78fc5a8d6e',
-    messagingSenderId: '906403289387',
-    projectId: 'fir-cruddemo-2bf79',
-    authDomain: 'fir-cruddemo-2bf79.firebaseapp.com',
-    storageBucket: 'fir-cruddemo-2bf79.appspot.com',
+    apiKey: 'AIzaSyCi9xOJTsQfRmvQvPy8uR_jhNfftydTccY',
+    appId: '1:604426396948:web:b8b531c476acfbfe858e01',
+    messagingSenderId: '604426396948',
+    projectId: 'vacdashboard-b7cf5',
+    authDomain: 'vacdashboard-b7cf5.firebaseapp.com',
+    databaseURL: 'https://vacdashboard-b7cf5-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'vacdashboard-b7cf5.appspot.com',
+    measurementId: 'G-G9DXVWVC0X',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA_2yPvrfXjqqqVLLhnHqfysm5sGbep9p8',
-    appId: '1:906403289387:android:505f3f5da1350bd15a8d6e',
-    messagingSenderId: '906403289387',
-    projectId: 'fir-cruddemo-2bf79',
-    storageBucket: 'fir-cruddemo-2bf79.appspot.com',
+    apiKey: 'AIzaSyBKjar0hy2sRq24cslKBO8SB6UeLc1eVTs',
+    appId: '1:604426396948:android:0859549a3129e7f6858e01',
+    messagingSenderId: '604426396948',
+    projectId: 'vacdashboard-b7cf5',
+    databaseURL: 'https://vacdashboard-b7cf5-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'vacdashboard-b7cf5.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBHLJZc90HbbSd-80yOjpBNKbkRCWrAkNc',
-    appId: '1:906403289387:ios:2969c4144f1934315a8d6e',
-    messagingSenderId: '906403289387',
-    projectId: 'fir-cruddemo-2bf79',
-    storageBucket: 'fir-cruddemo-2bf79.appspot.com',
-    iosClientId:
-        '906403289387-1peu3m0eu39umkfsrq0p47evs4e6m1u1.apps.googleusercontent.com',
-    iosBundleId: 'com.example.version',
+    apiKey: 'AIzaSyD-Kl5JpDQIiBSm-3kuInSlS3B5P9512EQ',
+    appId: '1:604426396948:ios:0775b1d3ce4c60c6858e01',
+    messagingSenderId: '604426396948',
+    projectId: 'vacdashboard-b7cf5',
+    databaseURL: 'https://vacdashboard-b7cf5-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'vacdashboard-b7cf5.appspot.com',
+    iosClientId: '604426396948-o485a6hogo483na3dcq675cb1sbe80mu.apps.googleusercontent.com',
+    iosBundleId: 'com.example.projectManagement',
   );
 }

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "604426396948",
+    "firebase_url": "https://vacdashboard-b7cf5-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "vacdashboard-b7cf5",
+    "storage_bucket": "vacdashboard-b7cf5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604426396948:android:0859549a3129e7f6858e01",
+        "android_client_info": {
+          "package_name": "com.example.project_management"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "604426396948-k95s5qtqt6b8s6tcufaasceod3uqr8qg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKjar0hy2sRq24cslKBO8SB6UeLc1eVTs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "604426396948-k95s5qtqt6b8s6tcufaasceod3uqr8qg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

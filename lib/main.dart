@@ -1,13 +1,19 @@
-import 'app/config/routes/app_pages.dart';
-import 'app/config/themes/app_theme.dart';
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:project_management/screens/auth/auth.dart';
+import 'package:project_management/utils/theme/screen_size.dart';
+
 import 'firebase_options.dart';
 
 void main() async {
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 
@@ -16,12 +22,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Project Management',
+    final screenSize = getScreenSize(context);
+    final double oneHeightUnit = screenSize.oneHeightUnit;
+    final double oneWidthUnit = screenSize.oneWidthUnit;
+
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.basic,
-      initialRoute: AppPages.initial,
-      getPages: AppPages.routes,
+      title: 'Vaccienly Dashboard',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: AuthScreen(
+        height: screenSize.height,
+        width: screenSize.width,
+        heightUnit: oneHeightUnit,
+        widthUnit: oneWidthUnit,
+      ),
     );
   }
 }
