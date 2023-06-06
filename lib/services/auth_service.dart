@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:project_management/models/admins_model.dart';
 import 'package:project_management/services/database_service.dart';
 
 class AuthService {
@@ -16,9 +17,9 @@ class AuthService {
       );
 
       return userCredential.user;
-    } catch (e) {
+    } on FirebaseAuthException catch (e) {
+      print('error in auth service at sign in : ${e.message}');
       // يمكنك إدراج التعامل مع الأخطاء هنا
-      throw e;
     }
   }
 
@@ -34,13 +35,31 @@ class AuthService {
       // حفظ اسم المستخدم في قاعدة البيانات
       if (userCredential.user != null) {
         final String userId = userCredential.user!.uid;
-        await _database.saveUserName(userId, name);
+        final String userEmail = userCredential.user!.email!;
+        final String userPassword = password;
+
+        // إنشاء كائن AdminModel
+        final adminModel = AdminModel(
+          id: userId,
+          userName: name,
+          email: userEmail,
+          password: userPassword,
+        );
+
+        // تحويل AdminModel إلى خريطة
+        final userData = adminModel.toJson();
+
+        // تحويل البيانات إلى نوع Map<String, dynamic>
+        final userDataMap = Map<String, dynamic>.from(userData);
+
+        // حفظ البيانات في قاعدة البيانات
+        await _database.saveUserData(userId, userDataMap);
       }
 
       return userCredential.user;
-    } catch (e) {
+    } on FirebaseAuthException catch (e) {
+      print('error in auth service at sign up : ${e.message}');
       // يمكنك إدراج التعامل مع الأخطاء هنا
-      throw e;
     }
   }
 
@@ -48,9 +67,9 @@ class AuthService {
   Future<void> signOut() async {
     try {
       await _auth.signOut();
-    } catch (e) {
+    } on FirebaseAuthException catch (e) {
+      print('error in auth service at sign out : ${e.message}');
       // يمكنك إدراج التعامل مع الأخطاء هنا
-      throw e;
     }
   }
 
