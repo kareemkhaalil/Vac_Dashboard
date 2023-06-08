@@ -60,6 +60,8 @@ class AuthService {
     } on FirebaseAuthException catch (e) {
       print('error in auth service at sign up : ${e.message}');
       // يمكنك إدراج التعامل مع الأخطاء هنا
+      // مثلاً، يمكنك إظهار رسالة خطأ للمستخدم
+      throw ('Error during sign up: ${e.message}');
     }
   }
 

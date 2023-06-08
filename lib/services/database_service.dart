@@ -21,21 +21,22 @@ class DatabaseService {
     try {
       final CollectionReference adminsCollection =
           FirebaseFirestore.instance.collection('admins');
-      final QuerySnapshot adminsSnapshot = await adminsCollection.get();
+      //final QuerySnapshot adminsSnapshot = await adminsCollection.get();
 
-      // التحقق من وجود مجموعة المشرفين
-      if (adminsSnapshot.docs.isEmpty) {
-        // إنشاء مجموعة المشرفين وإضافة مستند جديد بالمستخدم الحالي
-        final DocumentReference adminDoc = await adminsCollection.add({});
-        final CollectionReference usersCollection =
-            adminDoc.collection('admins');
-        await usersCollection.doc(userId).set(userData);
+      // استخدام المجموعة الحالية لإضافة المستند بالمستخدم الحالي
+
+      final DocumentSnapshot userDoc = await adminsCollection.doc(userId).get();
+
+      if (userDoc.exists) {
+        // المستند موجود بالفعل، قم بتحديث البيانات
+        await adminsCollection
+            .doc(userId)
+            .update(Map<String, dynamic>.from(userData));
       } else {
-        // استخدام المجموعة الحالية لإضافة المستند بالمستخدم الحالي
-        final DocumentReference adminDoc = adminsSnapshot.docs.first.reference;
-        final CollectionReference usersCollection =
-            adminDoc.collection('admins');
-        await usersCollection.doc(userId).set(userData);
+        // المستند غير موجود، قم بإضافته
+        await adminsCollection
+            .doc(userId)
+            .set(Map<String, dynamic>.from(userData));
       }
     } catch (e) {
       // يمكنك إدراج التعامل مع الأخطاء هنا

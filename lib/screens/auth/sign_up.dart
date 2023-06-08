@@ -18,20 +18,22 @@ class SignUpScreen extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final double? height;
-  final double? width;
-  final double? heightUnit;
-  final double? widthUnit;
+  final TextEditingController? emailController = TextEditingController();
   final VoidCallback? goToSignInPage;
-  TextEditingController? emailController;
-  TextEditingController? passwordController;
-  TextEditingController? userNameController;
+  final double? height;
+  final double? heightUnit;
+  final TextEditingController? passwordController = TextEditingController();
+  final TextEditingController? userNameController = TextEditingController();
+  final double? width;
+  final double? widthUnit;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AuthCubit(),
       child: BlocBuilder<AuthCubit, AuthState>(
         builder: (context, state) {
+          final cubit = AuthCubit();
           return Center(
             child: GlassmorphismContainer(
               shadowOffset: 20,
@@ -55,7 +57,7 @@ class SignUpScreen extends StatelessWidget {
                           height: height! * 0.05,
                           width: width! * 0.25,
                           obscureText: false,
-                          controller: TextEditingController(),
+                          controller: userNameController!,
                           hintText: "User Name",
                         ),
                         SizedBox(
@@ -65,7 +67,7 @@ class SignUpScreen extends StatelessWidget {
                           height: height! * 0.05,
                           width: width! * 0.25,
                           obscureText: false,
-                          controller: TextEditingController(),
+                          controller: emailController!,
                           hintText: "Email",
                         ),
                         SizedBox(
@@ -75,7 +77,7 @@ class SignUpScreen extends StatelessWidget {
                           height: height! * 0.05,
                           width: width! * 0.25,
                           obscureText: true,
-                          controller: TextEditingController(),
+                          controller: passwordController!,
                           hintText: "Password",
                         ),
                         SizedBox(
@@ -85,7 +87,13 @@ class SignUpScreen extends StatelessWidget {
                           height: height! * 0.05,
                           width: width! * 0.25,
                           text: "Sign Up",
-                          onPressed: () {},
+                          onPressed: () {
+                            cubit.signUp(
+                              emailController!.text,
+                              passwordController!.text,
+                              userNameController!.text,
+                            );
+                          },
                         ),
                         SizedBox(
                           height: height! * 0.02,
