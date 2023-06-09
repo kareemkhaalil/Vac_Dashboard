@@ -36,3 +36,13 @@ class LogoutFailed extends AuthState {
   final String message;
   LogoutFailed(this.message);
 }
+
+class AlertOpen extends AuthState {
+  final String message;
+  AlertOpen(this.message);
+}
+
+class AlertClose extends AuthState {
+  final String message;
+  AlertClose(this.message);
+}

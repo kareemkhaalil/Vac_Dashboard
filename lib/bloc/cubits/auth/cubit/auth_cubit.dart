@@ -1,22 +1,41 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:project_management/services/auth_service.dart';
+import 'package:project_management/utils/hive/hive_manager.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
 
-  AuthService _authService = AuthService();
+  final AuthService _authService = AuthService();
+  final TextEditingController? passwordController = TextEditingController();
+  final TextEditingController? userNameController = TextEditingController();
+  final TextEditingController? emailController = TextEditingController();
+  late bool? showAlert = false;
 
-  void signIn(String email, String password) {
+  openAlert(String message) {
+    showAlert = true;
+    emit(AlertOpen(message));
+  }
+
+  closeAlert(String message) {
+    showAlert = false;
+    emit(AlertClose(message));
+  }
+
+  void signIn() {
     try {
       emit(LoginLoading());
 
-      _authService.signIn(email, password).then(
+      _authService.signIn(emailController!.text, passwordController!.text).then(
         (user) {
-          print(user?.email);
+          HiveManager.saveUserId(user?.uid ?? '');
+          HiveManager.saveIsLoggedIn(true);
+          debugPrint("LoginSuccess");
+          debugPrint(user!.uid);
         },
       );
       emit(LoginSuccess());
@@ -26,16 +45,25 @@ class AuthCubit extends Cubit<AuthState> {
           e.message ?? 'Login failed',
         ),
       );
+      openAlert(e.message!);
     }
   }
 
-  void signUp(String email, String password, String username) {
+  void signUp() {
     try {
       emit(SignUpLoading());
 
-      _authService.signUp(email, password, username).then(
+      _authService
+          .signUp(
+        emailController!.text,
+        passwordController!.text,
+        userNameController!.text,
+      )
+          .then(
         (user) {
-          print(user?.email);
+          HiveManager.saveUserId(user?.uid ?? '');
+          HiveManager.saveIsLoggedIn(true);
+          debugPrint("SignUp Success");
         },
       );
       emit(SignUpSuccess());
@@ -45,6 +73,7 @@ class AuthCubit extends Cubit<AuthState> {
           e.message ?? 'Sign up failed',
         ),
       );
+      AlertOpen(e.message!);
     }
   }
 
@@ -53,6 +82,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(LogoutLoading());
 
       _authService.signOut();
+      HiveManager.clearHive();
       emit(LogoutSuccess());
     } on FirebaseException catch (e) {
       emit(

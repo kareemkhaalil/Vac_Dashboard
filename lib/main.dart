@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:project_management/screens/auth/auth.dart';
 import 'package:project_management/utils/theme/screen_size.dart';
 
@@ -13,7 +14,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+  await Hive.initFlutter();
+  await Hive.openBox<String>('users');
+  await Hive.openBox<bool>('loggedIn');
   runApp(const MyApp());
 }
 
