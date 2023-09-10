@@ -63,10 +63,11 @@ class GlassmorphismContainer extends StatelessWidget {
               height: height,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [
-                    AppColors.accentColor.withOpacity(0.2),
-                    AppColors.darkColor.withOpacity(0.2),
-                  ],
+                  colors: colors ??
+                      [
+                        AppColors.accentColor.withOpacity(0.2),
+                        AppColors.darkColor.withOpacity(0.2),
+                      ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),

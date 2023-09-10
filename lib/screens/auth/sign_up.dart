@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_management/bloc/cubits/auth/cubit/auth_cubit.dart';
 import 'package:project_management/utils/theme/images.dart';
-import 'package:project_management/widgets/glass_alert.dart';
 import 'package:project_management/widgets/glass_button.dart';
 import 'package:project_management/widgets/glass_container.dart';
 import 'package:project_management/widgets/glass_textFormField.dart';
@@ -90,7 +89,7 @@ class SignUpScreen extends StatelessWidget {
                               width: width! * 0.25,
                               text: "Sign Up",
                               onPressed: () {
-                                cubit.signUp();
+                                cubit.signUp(context);
                               },
                             ),
                             SizedBox(

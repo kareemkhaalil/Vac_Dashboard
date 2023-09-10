@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project_management/models/admins_model.dart';
 import 'package:project_management/services/database_service.dart';
@@ -6,8 +5,8 @@ import 'package:project_management/services/database_service.dart';
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final DatabaseService _database = DatabaseService();
-
   // تسجيل الدخول
+
   Future<User?> signIn(String email, String password) async {
     try {
       final UserCredential userCredential =
@@ -19,7 +18,7 @@ class AuthService {
       return userCredential.user;
     } on FirebaseAuthException catch (e) {
       print('error in auth service at sign in : ${e.message}');
-      // يمكنك إدراج التعامل مع الأخطاء هنا
+      return null;
     }
   }
 

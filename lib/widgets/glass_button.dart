@@ -4,18 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:project_management/widgets/glass_container.dart';
 
 class GlassmorphismButton extends StatefulWidget {
-  final double? width;
-  final double? height;
-  final String text;
-  final VoidCallback onPressed;
-  final BorderRadiusGeometry? borderRadius;
-  final Matrix4? customTransform;
-  final List<Color>? colors;
-  final bool shadow;
-  final double shadowOffset;
-  final double shadowOpacity;
-  final double blurRadius;
-
   const GlassmorphismButton({
     Key? key,
     this.width,
@@ -29,15 +17,29 @@ class GlassmorphismButton extends StatefulWidget {
     this.shadowOffset = 1.0,
     this.shadowOpacity = 0.2,
     this.blurRadius = 80.0,
+    this.textColor = Colors.white,
   }) : super(key: key);
+
+  final double blurRadius;
+  final BorderRadiusGeometry? borderRadius;
+  final List<Color>? colors;
+  final Matrix4? customTransform;
+  final double? height;
+  final VoidCallback onPressed;
+  final bool shadow;
+  final double shadowOffset;
+  final double shadowOpacity;
+  final String text;
+  final Color textColor;
+  final double? width;
 
   @override
   _GlassmorphismButtonState createState() => _GlassmorphismButtonState();
 }
 
 class _GlassmorphismButtonState extends State<GlassmorphismButton> {
-  bool isPressed = false;
   bool isHovered = false;
+  bool isPressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +72,7 @@ class _GlassmorphismButtonState extends State<GlassmorphismButton> {
           });
         },
         child: AnimatedContainer(
-          duration: Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 200),
           width: isPressed
               ? widget.width! * 0.95
               : widget.width, // تحديث عرض الحاوية بناءً على حالة الضغط
@@ -93,7 +95,7 @@ class _GlassmorphismButtonState extends State<GlassmorphismButton> {
               child: Text(
                 widget.text,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: widget.textColor,
                   fontSize: 16.0,
                   fontWeight: FontWeight.w700,
                   fontFamily: "Raleway",

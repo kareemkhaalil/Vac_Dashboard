@@ -59,6 +59,8 @@ dependencies:
   hive_flutter: ^1.1.0
   path_provider: ^2.0.5
   flutter_localization: ^0.1.12
+  iconly: ^1.0.1
+  fluentui_system_icons: ^1.1.202
   
  
 

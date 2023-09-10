@@ -6,7 +6,7 @@ class DatabaseService {
   Future<DocumentSnapshot> getUserData(String userId) async {
     try {
       final DocumentSnapshot userSnapshot =
-          await _firestore.collection('users').doc(userId).get();
+          await _firestore.collection('admins').doc(userId).get();
       return userSnapshot;
     } catch (e) {
       // يمكنك إدراج التعامل مع الأخطاء هنا

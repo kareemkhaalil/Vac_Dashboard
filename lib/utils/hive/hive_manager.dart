@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:project_management/utils/hive/hive_box.dart';
 
@@ -21,5 +22,6 @@ class HiveManager {
   static void clearHive() {
     HiveBoxes.usersBox.clear();
     HiveBoxes.loggedInBox.clear();
+    debugPrint('Hive cleared');
   }
 }

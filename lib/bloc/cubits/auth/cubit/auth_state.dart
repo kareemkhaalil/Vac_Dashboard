@@ -42,7 +42,4 @@ class AlertOpen extends AuthState {
   AlertOpen(this.message);
 }
 
-class AlertClose extends AuthState {
-  final String message;
-  AlertClose(this.message);
-}
+class AlertClose extends AuthState {}

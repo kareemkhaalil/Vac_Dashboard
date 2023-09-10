@@ -8,6 +8,7 @@ class AdminModel {
   String? userName;
   String? email;
   String? password;
+  String? imageUrl;
   List<ArticleModel>? articles;
   List<TagsModel>? tags;
   List<ScheduleModel>? schedule;
@@ -22,6 +23,7 @@ class AdminModel {
     this.tags,
     this.schedule,
     this.icons,
+    this.imageUrl,
   });
 
   factory AdminModel.fromJson(Map<String, dynamic> json) {
@@ -29,6 +31,7 @@ class AdminModel {
       id: json['id'],
       userName: json['userName'],
       email: json['email'],
+      imageUrl: json['imageUrl'],
       password: json['password'],
       articles: (json['articles'] as List<dynamic>?)
           ?.map((item) => ArticleModel.fromJson(item))
@@ -50,6 +53,7 @@ class AdminModel {
       'id': id,
       'userName': userName,
       'email': email,
+      'imageUrl': imageUrl,
       'password': password,
       'articles': articles?.map((item) => item.toJson()).toList(),
       'tags': tags?.map((item) => item.toJson()).toList(),
